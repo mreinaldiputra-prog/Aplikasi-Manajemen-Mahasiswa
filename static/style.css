@@ -136,7 +136,7 @@ body.dark .form-box {
     font-weight: 600;
     display: block;
     margin-bottom: 6px;
-}
+}S
 
 .form-box input,
 .form-box select {
@@ -169,5 +169,125 @@ button {
     background: linear-gradient(135deg, #5a4cf0, #9d3ef8);
     color: white;
     font-weight: 600;
+    cursor: pointer;
+}
+
+
+
+/* ================= DASHBOARD ================= */
+.page-title {
+    margin-bottom: 20px;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: var(--card-bg, #ffffff);
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.card.wide {
+    grid-column: span 2;
+}
+
+.summary {
+    text-align: center;
+}
+
+.value {
+    font-size: 32px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.jurusan-list {
+    list-style: none;
+    padding: 0;
+}
+
+.jurusan-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+/* ================= GRAFIK ================= */
+.chart-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chart-title {
+    margin-bottom: 15px;
+}
+
+.chart-wrapper {
+    width: 380px;
+    max-width: 100%;
+}
+
+
+.form-page {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+.form-card {
+    max-width: 480px;
+    margin: auto;
+    padding: 30px;
+    background: #111;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #333;
+    background: #0f0f0f;
+    color: white;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #6366f1, #9333ea);
+    color: white;
+    font-weight: bold;
+    border: none;
     cursor: pointer;
 }

@@ -3,50 +3,94 @@
 
 <h2 class="page-title">Dashboard Statistik Mahasiswa</h2>
 
+<!-- ================= RINGKASAN ================= -->
 <div class="dashboard-grid">
 
-    <!-- Total Mahasiswa -->
-    <div class="card">
+    <div class="card summary">
         <h3>Total Mahasiswa</h3>
         <p class="value">{{ total }}</p>
     </div>
 
-    <!-- Rata-rata IPK -->
-    <div class="card">
+    <div class="card summary">
         <h3>Rata-rata IPK</h3>
         <p class="value">{{ avg_ipk }}</p>
     </div>
 
-    <!-- Mahasiswa per Jurusan -->
-    <div class="card wide">
-        <h3>Jumlah Per Jurusan</h3>
+    <div class="card summary wide">
+        <h3>Jumlah Mahasiswa per Jurusan</h3>
         <ul class="jurusan-list">
-            {% for j, count in per_jurusan.items() %}
-                <li>{{ j }}: <strong>{{ count }}</strong></li>
+            {% for jurusan, jumlah in per_jurusan.items() %}
+                <li>{{ jurusan }} <span>{{ jumlah }}</span></li>
             {% endfor %}
         </ul>
     </div>
 
 </div>
 
-<!-- GRAFIK PIE (Realtime) -->
-<div class="chart-box">
-    <canvas id="jurusanChart"></canvas>
+<!-- ================= TABEL ================= -->
+<div class="card wide mt">
+    <h3>Tabel Statistik Mahasiswa</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Jurusan</th>
+                <th>Jumlah Mahasiswa</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for jurusan, jumlah in per_jurusan.items() %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ jurusan }}</td>
+                <td>{{ jumlah }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 
+<!-- ================= GRAFIK ================= -->
+<div class="card wide mt chart-card">
+    <h3 class="chart-title">Grafik Distribusi Mahasiswa per Jurusan</h3>
+    <div class="chart-wrapper">
+        <canvas id="jurusanChart"></canvas>
+    </div>
+</div>
+
+<!-- ================= CHART JS ================= -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const dataJurusan = {{ per_jurusan | tojson | safe }};
+    const ctx = document.getElementById("jurusanChart");
 
-
-
-new Chart(ctx, {
-    type: "pie",
-    data: {
-        labels: Object.keys(labelJurusan),
-        datasets: [{
-            data: Object.values(labelJurusan)
-        }]
+    if (window.chartInstance) {
+        window.chartInstance.destroy();
     }
-});
+
+    window.chartInstance = new Chart(ctx, {
+        type: "doughnut",
+        data: {
+            labels: Object.keys(dataJurusan),
+            datasets: [{
+                data: Object.values(dataJurusan),
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            cutout: "65%",
+            plugins: {
+                legend: {
+                    position: "bottom",
+                    labels: {
+                        padding: 15,
+                        boxWidth: 14
+                    }
+                }
+            }
+        }
+    });
 </script>
 
 {% endblock %}
