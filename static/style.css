@@ -1,23 +1,22 @@
-/* =========================================================
-   GLOBAL STYLE (LIGHT MODE)
-========================================================= */
+/* RESET & GLOBAL */
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: "Poppins", sans-serif;
     background: #eef1f7;
     color: #2b2b2b;
-    transition: background 0.3s ease, color 0.3s ease;
+    transition: 0.3s;
 }
 
-/* DARK MODE */
 body.dark {
     background: #0f0f0f;
     color: #e2e2e2;
 }
 
-/* =========================================================
-   NAVBAR
-========================================================= */
+/* NAVBAR */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -33,35 +32,22 @@ body.dark {
 
 .navbar a {
     color: white;
-    font-weight: 500;
     text-decoration: none;
     margin-right: 20px;
     opacity: .9;
-    transition: 0.3s ease;
 }
 
 .navbar a:hover {
     opacity: 1;
-    transform: translateY(-2px);
 }
 
-/* =========================================================
-   PAGE CONTAINER
-========================================================= */
+/* CONTAINER */
 .container {
     width: 92%;
     margin: 35px auto;
-    animation: fadeIn 0.4s ease;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-/* =========================================================
-   PAGE TITLE
-========================================================= */
+/* TITLE */
 .page-title {
     font-size: 30px;
     font-weight: 800;
@@ -69,221 +55,27 @@ body.dark {
     background: linear-gradient(135deg, #5a4cf0, #b243ff);
     -webkit-background-clip: text;
     color: transparent;
-    letter-spacing: 1px;
 }
 
-/* =========================================================
-   DASHBOARD GRID
-========================================================= */
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 22px;
-}
-
-/* =========================================================
-   PREMIUM CARD
-========================================================= */
+/* CARD */
 .card {
     background: white;
     border-radius: 18px;
     padding: 28px;
-    text-align: center;
     box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    transition: 0.25s ease;
-    position: relative;
-    overflow: hidden;
 }
 
-.card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 14px 35px rgba(0,0,0,0.15);
-}
-
-.card::before {
-    content: "";
-    position: absolute;
-    width: 130%;
-    height: 130%;
-    top: -80%;
-    left: -20%;
-    background: linear-gradient(135deg, #5a4cf0, #c85bff);
-    opacity: 0.06;
-    transform: rotate(25deg);
-}
-
-/* DARK MODE CARD */
 body.dark .card {
     background: #191919;
-    box-shadow: 0 8px 25px rgba(255,255,255,0.05);
 }
 
-body.dark .card::before {
-    opacity: 0.09;
-}
-
-.card h3 {
-    font-size: 19px;
-    opacity: .85;
-    margin-bottom: 12px;
-}
-
-.value {
-    font-size: 2.6rem;
-    font-weight: 800;
-    color: #5a4cf0;
-    text-shadow: 0 0px 10px rgba(90, 76, 240, .25);
-}
-
-body.dark .value {
-    color: #c47bff;
-}
-
-/* Wide card */
-.card.wide {
-    grid-column: span 2;
-}
-
-/* =========================================================
-   LIST PER JURUSAN
-========================================================= */
-.jurusan-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.jurusan-list li {
-    padding: 8px 0;
-    font-size: 17px;
-    border-bottom: 1px solid #ddd;
-}
-
-body.dark .jurusan-list li {
-    border-bottom: 1px solid #333;
-}
-
-/* =========================================================
-   CHART BOX
-========================================================= */
-.chart-box {
-    background: white;
-    padding: 28px;
-    border-radius: 20px;
-    margin-top: 35px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-}
-
-body.dark .chart-box {
-    background: #181818;
-    box-shadow: 0 8px 25px rgba(255,255,255,0.05);
-}
-
-/* =========================================================
-   FORM INPUTS
-========================================================= */
-form.form-box input,
-form.form-box select {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 18px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    background: #fff;
-    transition: border 0.2s ease, background 0.2s ease;
-}
-
-body.dark form.form-box input,
-body.dark form.form-box select {
-    background: #101010;
-    border: 1px solid #333;
-    color: #fff;
-}
-
-button {
-    padding: 12px 22px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #5a4cf0, #9d3ef8);
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-weight: 600;
-    transition: 0.3s ease;
-}
-
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(120, 80, 255, 0.3);
-}
-
-/* =========================================================
-   FLASH MESSAGES
-========================================================= */
-.alert {
-    padding: 14px;
-    border-radius: 10px;
-    margin-bottom: 12px;
-    font-weight: 500;
-}
-
-.alert.error { background: #ffb1b1; }
-.alert.info { background: #c8ddff; }
-.alert.success { background: #c8ffc8; }
-
-/* =========================================================
-   TOGGLE SWITCH (DARK MODE)
-========================================================= */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 55px;
-    height: 28px;
-    margin-left: 10px;
-}
-
-.switch input { display: none; }
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    inset: 0;
-    background: #cfcfcf;
-    border-radius: 34px;
-    transition: 0.4s;
-}
-
-.slider:before {
-    content: "";
-    position: absolute;
-    width: 22px;
-    height: 22px;
-    left: 3px;
-    bottom: 3px;
-    background: white;
-    border-radius: 50%;
-    transition: 0.3s ease;
-}
-
-input:checked + .slider {
-    background: linear-gradient(135deg, #5a4cf0, #ab4df5);
-}
-
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
-
-
-/* =========================================================
-   TABLE STYLE — PREMIUM
-========================================================= */
-
+/* TABLE */
 .table-box {
     background: white;
     padding: 25px;
     border-radius: 18px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.08);
     overflow-x: auto;
-    margin-top: 25px;
 }
 
 body.dark .table-box {
@@ -295,67 +87,45 @@ table {
     border-collapse: collapse;
 }
 
-table thead {
+thead {
     background: linear-gradient(135deg, #5a4cf0, #a13ff0);
     color: white;
 }
 
-table thead th {
-    padding: 14px;
-    font-size: 15px;
-    text-align: left;
+th, td {
+    padding: 12px;
+    font-size: 14px;
+    border-bottom: 1px solid #ddd;
 }
 
-table tbody tr {
-    background: white;
-    transition: 0.25s ease;
+body.dark td {
+    border-color: #333;
 }
 
-body.dark table tbody tr {
-    background: #181818;
+tbody tr:nth-child(even) {
+    background: #f3f3ff;
 }
 
-table tbody tr:nth-child(even) {
-    background: #f1f1ff;
-}
-
-body.dark table tbody tr:nth-child(even) {
+body.dark tbody tr:nth-child(even) {
     background: #222;
 }
 
-table td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-    font-size: 14px;
-}
-
-body.dark table td {
-    border-bottom: 1px solid #333;
-    color: #ddd;
-}
-
-/* Hover effect */
-table tbody tr:hover {
+tbody tr:hover {
     background: #e6e1ff;
-    transform: scale(1.01);
 }
 
-body.dark table tbody tr:hover {
-    background: #282238;
+body.dark tbody tr:hover {
+    background: #2b2440;
 }
 
-
-/* =========================================================
-   FORM TAMBAH MAHASISWA — MODERN
-========================================================= */
-
+/* FORM */
 .form-box {
     background: white;
     padding: 28px;
     border-radius: 18px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
     max-width: 550px;
     margin: 25px auto;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
 }
 
 body.dark .form-box {
@@ -364,37 +134,40 @@ body.dark .form-box {
 
 .form-box label {
     font-weight: 600;
-    margin-bottom: 6px;
     display: block;
+    margin-bottom: 6px;
 }
 
 .form-box input,
 .form-box select {
     width: 100%;
     padding: 12px;
-    font-size: 15px;
     margin-bottom: 18px;
     border-radius: 10px;
     border: 1px solid #ccc;
-    transition: 0.3s;
 }
 
 body.dark .form-box input,
 body.dark .form-box select {
     background: #111;
-    border: 1px solid #333;
+    border-color: #333;
     color: white;
 }
 
 .form-box input:focus,
 .form-box select:focus {
     border-color: #5a4cf0;
-    box-shadow: 0 0 8px rgba(90, 76, 240, 0.4);
+    outline: none;
 }
 
-button.submit-btn {
+/* BUTTON */
+button {
     width: 100%;
-    font-size: 16px;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, #5a4cf0, #9d3ef8);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
 }
-
-
